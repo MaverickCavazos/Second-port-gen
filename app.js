@@ -5,12 +5,28 @@ return inquirer.prompt([
     {
         type: 'input',
         name: 'name',
-        message: 'What is your name?'
+        message: 'What is your name?',
+        validate: nameInput => {
+            if (nameInput) {
+                return true;
+            } else {
+                console.log('Please enter your name!');
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         name: 'github',
-        message: 'Enter your Github Username'
+        message: 'Enter your Github Username',
+        validate: githubInput => {
+            if (githubInput) {
+                return true;
+            } else {
+                console.log('Please enter your Github!');
+                return false;
+            }
+        }
     },
     {
         type: 'input',
@@ -36,17 +52,46 @@ const promptProject = portfolioData => {
             type:'input',
             name:'name',
             message:'What is the name for your project?',
+            validate: projectInput => {
+                if (projectInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your project name!');
+                    return false;
+                }
+            }
         },
         {
             type:'input',
             name:'description',
-            message:'Provide a descript of the project (Required)'
+            message:'Provide a description of the project (Required)',
+            validate: descriptionInput => {
+                if (descriptionInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your project description!');
+                    return false;
+                }
+            }
         },
         {
             type: 'checkbox',
             name: 'languages',
             message: 'What did you build this project with? (Check all that apply)',
             choices: ['Javascript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
+        },
+        {
+            type: 'input',
+            name: 'link',
+            message: 'Enter the GitHub link to your project. (Required)',
+            validate: linkInput => {
+              if (linkInput) {
+                return true;
+              } else {
+                console.log('You need to enter a project GitHub link!');
+                return false;
+              }
+            }
         },
         {
             type: 'confirm',
